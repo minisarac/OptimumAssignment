@@ -15,6 +15,11 @@ struct RootTabView: View {
             Label("Home", systemImage: "house")
           }
         
+        HomeAltView()
+          .tabItem {
+            Label("Alternative", systemImage: "house")
+          }
+        
         
         FavoritesView()
           .tabItem {
