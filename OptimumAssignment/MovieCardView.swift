@@ -24,6 +24,9 @@ struct MovieCardView: View {
       Text(movie.title)
         .font(.headline)
         .lineLimit(2)
+        .fixedSize(horizontal: false, vertical: true)
+        .frame(minHeight: 44, alignment: .top)
+        .multilineTextAlignment(.leading)
       
       HStack(spacing: 6) {
         if let rating = movie.rating {
