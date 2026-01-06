@@ -38,7 +38,12 @@ struct HomeAltView: View {
         ScrollView {
           LazyVGrid(columns: columns, spacing: 12) {
             ForEach(movies) { movie in
-              MovieCardView(movie: movie)
+              NavigationLink {
+                MovieDetailsView(movie: movie)
+              } label: {
+                MovieCardView(movie: movie)
+//                  .frame(width: 180)
+              }
             }
           }
           .padding(.horizontal)

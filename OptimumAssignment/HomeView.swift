@@ -34,8 +34,12 @@ struct HomeView: View {
         ScrollView(.horizontal, showsIndicators: true) {
           LazyHStack(spacing: 12) {
             ForEach(movies) { movie in
-              MovieCardView(movie: movie)
-                .frame(width: 150)
+              NavigationLink {
+                MovieDetailsView(movie: movie)
+              } label: {
+                MovieCardView(movie: movie)
+                  .frame(width: 150)
+              }
             }
           }
           .padding(.horizontal)
