@@ -8,117 +8,108 @@
 import SwiftUI
 
 struct HomeView: View {
-  @StateObject private var movieViewModel = MovieListViewModel()
-  @StateObject private var tvViewModel = TVShowListViewModel()
-  @StateObject private var settings = AppSettings.shared
-  @State private var period: TrendingPeriod = .today
+    @EnvironmentObject var listViewModel: MediaContentVM
+    @StateObject private var settings = AppSettings.shared
 
-  private var timeWindow: String {
-    switch period {
-    case .today: return "day"
-    case .thisWeek: return "week"
+    var body: some View {
+        NavigationStack {
+            VStack(spacing: 0) {
+                Picker("Trending Period", selection: $listViewModel.period) {
+                    ForEach(TrendingPeriod.allCases, id: \.rawValue) { item in
+                        Text(item.label).tag(item)
+                    }
+                }
+                .pickerStyle(.segmented)
+                .padding(.horizontal)
+                .padding(.bottom, 8)
+
+                ScrollView {
+                    VStack(alignment: .leading, spacing: 20) {
+                        switch settings.contentType {
+                        case .all:
+                            mediaSection(for: .movie)
+                            mediaSection(for: .tv)
+
+                        case .tv:
+                            mediaSection(for: .tv)
+
+                        case .movies:
+                            mediaSection(for: .movie)
+                        }
+                    }
+                    .padding(.top, 8)
+                }
+            }
+            .navigationTitle("Most Popular")
+        }
     }
-  }
 
-  var body: some View {
-    NavigationStack {
-      VStack(spacing: 0) {
-        Picker("Trending Period", selection: $period) {
-          ForEach(TrendingPeriod.allCases, id: \.rawValue) { item in
-            Text(item.rawValue).tag(item)
-          }
-        }
-        .pickerStyle(.segmented)
-        .padding(.horizontal)
-        .padding(.bottom, 8)
-        .onChange(of: period) { newValue in
-          Task {
-            await movieViewModel.loadTrendingMovies(timeWindow: timeWindow)
-            await tvViewModel.loadTrendingTVShows(timeWindow: timeWindow)
-          }
-        }
-
-        ScrollView {
-          VStack(alignment: .leading, spacing: 20) {
-            // Movies Section
-            VStack(alignment: .leading, spacing: 12) {
-              Text("Movies")
+    func mediaSection(for mediaType: MediaType) -> some View {
+        VStack(alignment: .leading, spacing: 8) {
+            Text(mediaType.title)
                 .font(.title2)
                 .fontWeight(.bold)
                 .padding(.horizontal)
 
-              if movieViewModel.isLoading {
+            if listViewModel.isLoading {
                 ProgressView()
-                  .frame(maxWidth: .infinity)
-                  .frame(height: 200)
-              } else if let error = movieViewModel.errorMessage {
+                    .frame(maxWidth: .infinity)
+                    .frame(height: 200)
+            } else if let error = listViewModel.errorMessage {
                 Text(error)
-                  .foregroundColor(.red)
-                  .padding(.horizontal)
-              } else {
-                ScrollView(.horizontal, showsIndicators: false) {
-                  LazyHStack(spacing: 12) {
-                    ForEach(movieViewModel.movies.sorted(by: settings.sortOption)) { movie in
-                      NavigationLink {
-                        MovieDetailsView(movie: movie)
-                      } label: {
-                        MovieCardView(movie: movie)
-                          .frame(width: 150)
-                      }
-                      .buttonStyle(.plain)
+                    .foregroundColor(.red)
+                    .padding(.horizontal)
+            } else if settings.contentType != .all {
+                ScrollView {
+                    LazyVGrid(columns: columns, spacing: 8) {
+                        carouselContent(for: mediaType)
                     }
-                  }
-                  .padding(.horizontal)
+                    .padding(.horizontal)
+                    .padding(.top, 8)
                 }
-              }
-            }
-
-            // TV Shows Section
-            VStack(alignment: .leading, spacing: 12) {
-              Text("TV Shows")
-                .font(.title2)
-                .fontWeight(.bold)
-                .padding(.horizontal)
-
-              if tvViewModel.isLoading {
-                ProgressView()
-                  .frame(maxWidth: .infinity)
-                  .frame(height: 200)
-              } else if let error = tvViewModel.errorMessage {
-                Text(error)
-                  .foregroundColor(.red)
-                  .padding(.horizontal)
-              } else {
+            } else {
                 ScrollView(.horizontal, showsIndicators: false) {
-                  LazyHStack(spacing: 12) {
-                    ForEach(tvViewModel.tvShows.sorted(by: settings.sortOption)) { tvShow in
-                      NavigationLink {
-                        TVShowDetailsView(tvShow: tvShow)
-                      } label: {
-                        TVShowCardView(tvShow: tvShow)
-                          .frame(width: 150)
-                      }
-                      .buttonStyle(.plain)
+                    LazyHStack(spacing: 12) {
+                        carouselContent(for: mediaType)
                     }
-                  }
-                  .padding(.horizontal)
+                    .padding(.horizontal)
                 }
-              }
             }
-          }
-          .padding(.top, 8)
         }
-      }
-      .navigationTitle("Trending")
-      .task {
-        await movieViewModel.loadTrendingMovies(timeWindow: timeWindow)
-        await tvViewModel.loadTrendingTVShows(timeWindow: timeWindow)
-      }
     }
-  }
+
+    func carouselContent(for mediaType: MediaType) -> some View {
+        ForEach(sortedContent(for: mediaType)) { media in
+            NavigationLink {
+                MediaDetailsView(media: media)
+            } label: {
+                CardView(media: media)
+                    .frame(width: settings.contentType == .all ? 150 : 180)
+                    .padding(.vertical)
+            }
+            .buttonStyle(.plain)
+        }
+    }
+
+    func sortedContent(for mediaType: MediaType) -> [MediaContent] {
+        switch settings.sortOption {
+        case .rating:
+            return listViewModel.content(for: mediaType).sorted { $0.voteAverage > $1.voteAverage }
+        case .releaseDate:
+            return listViewModel.content(for: mediaType).sorted { $0.year ?? "" > $1.year ?? "" }
+        case .popularity:
+            return listViewModel.content(for: mediaType).sorted { $0.popularity > $1.popularity }
+        case .title:
+            return listViewModel.content(for: mediaType).sorted { $0.contentTitle < $1.contentTitle }
+        }
+    }
+
+    private let columns = [
+        GridItem(.flexible(), spacing: 12),
+        GridItem(.flexible(), spacing: 12),
+    ]
 }
 
-
 #Preview {
-  HomeView()
+    HomeView()
 }

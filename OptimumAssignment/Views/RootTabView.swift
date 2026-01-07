@@ -8,33 +8,29 @@
 import SwiftUI
 
 struct RootTabView: View {
-  @StateObject private var settings = AppSettings.shared
+    @StateObject private var settings = AppSettings.shared
+    @StateObject private var listViewModel = MediaContentVM()
 
-  var body: some View {
-    TabView {
-      Group {
-        if settings.contentType == .all {
-          HomeView()
-        } else {
-          HomeAltView()
-        }
-      }
-      .tabItem {
-        Label("Home", systemImage: "house.fill")
-      }
+    var body: some View {
+        TabView {
+            HomeView()
+                .tabItem {
+                    Label("Home", systemImage: "house.fill")
+                }
 
-      FavoritesView()
-        .tabItem {
-          Label("Favorites", systemImage: "heart.fill")
-        }
+            FavoritesView()
+                .tabItem {
+                    Label("Favorites", systemImage: "heart.fill")
+                }
 
-      SettingsView()
-        .tabItem {
-          Label("Settings", systemImage: "gear")
+            SettingsView()
+                .tabItem {
+                    Label("Settings", systemImage: "gear")
+                }
         }
+        .preferredColorScheme(settings.colorScheme)
+        .environmentObject(listViewModel)
     }
-    .preferredColorScheme(settings.colorScheme)
-  }
 }
 
 #Preview {
