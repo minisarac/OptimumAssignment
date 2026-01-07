@@ -8,17 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		CE094AE52F0D7DD1007A8C5D /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = CE094AE42F0D7DD1007A8C5D /* Alamofire */; };
+		CE207D292F0E2F0A003543F6 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = CE207D282F0E2F0A003543F6 /* Kingfisher */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
 		CE094A532F0C54F1007A8C5D /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = CE094A3D2F0C54F0007A8C5D /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = CE094A442F0C54F0007A8C5D;
-			remoteInfo = OptimumAssignment;
-		};
-		CE094A5D2F0C54F1007A8C5D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = CE094A3D2F0C54F0007A8C5D /* Project object */;
 			proxyType = 1;
@@ -30,7 +24,6 @@
 /* Begin PBXFileReference section */
 		CE094A452F0C54F0007A8C5D /* OptimumAssignment.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OptimumAssignment.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE094A522F0C54F1007A8C5D /* OptimumAssignmentTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OptimumAssignmentTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		CE094A5C2F0C54F1007A8C5D /* OptimumAssignmentUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OptimumAssignmentUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -44,11 +37,6 @@
 			path = OptimumAssignmentTests;
 			sourceTree = "<group>";
 		};
-		CE094A5F2F0C54F1007A8C5D /* OptimumAssignmentUITests */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = OptimumAssignmentUITests;
-			sourceTree = "<group>";
-		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,18 +44,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE207D292F0E2F0A003543F6 /* Kingfisher in Frameworks */,
 				CE094AE52F0D7DD1007A8C5D /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		CE094A4F2F0C54F1007A8C5D /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		CE094A592F0C54F1007A8C5D /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -82,7 +64,6 @@
 			children = (
 				CE094A472F0C54F0007A8C5D /* OptimumAssignment */,
 				CE094A552F0C54F1007A8C5D /* OptimumAssignmentTests */,
-				CE094A5F2F0C54F1007A8C5D /* OptimumAssignmentUITests */,
 				CE094AE32F0D7DD1007A8C5D /* Frameworks */,
 				CE094A462F0C54F0007A8C5D /* Products */,
 			);
@@ -93,7 +74,6 @@
 			children = (
 				CE094A452F0C54F0007A8C5D /* OptimumAssignment.app */,
 				CE094A522F0C54F1007A8C5D /* OptimumAssignmentTests.xctest */,
-				CE094A5C2F0C54F1007A8C5D /* OptimumAssignmentUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -126,6 +106,7 @@
 			name = OptimumAssignment;
 			packageProductDependencies = (
 				CE094AE42F0D7DD1007A8C5D /* Alamofire */,
+				CE207D282F0E2F0A003543F6 /* Kingfisher */,
 			);
 			productName = OptimumAssignment;
 			productReference = CE094A452F0C54F0007A8C5D /* OptimumAssignment.app */;
@@ -154,29 +135,6 @@
 			productReference = CE094A522F0C54F1007A8C5D /* OptimumAssignmentTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		CE094A5B2F0C54F1007A8C5D /* OptimumAssignmentUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = CE094A6C2F0C54F1007A8C5D /* Build configuration list for PBXNativeTarget "OptimumAssignmentUITests" */;
-			buildPhases = (
-				CE094A582F0C54F1007A8C5D /* Sources */,
-				CE094A592F0C54F1007A8C5D /* Frameworks */,
-				CE094A5A2F0C54F1007A8C5D /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				CE094A5E2F0C54F1007A8C5D /* PBXTargetDependency */,
-			);
-			fileSystemSynchronizedGroups = (
-				CE094A5F2F0C54F1007A8C5D /* OptimumAssignmentUITests */,
-			);
-			name = OptimumAssignmentUITests;
-			packageProductDependencies = (
-			);
-			productName = OptimumAssignmentUITests;
-			productReference = CE094A5C2F0C54F1007A8C5D /* OptimumAssignmentUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -194,10 +152,6 @@
 						CreatedOnToolsVersion = 26.2;
 						TestTargetID = CE094A442F0C54F0007A8C5D;
 					};
-					CE094A5B2F0C54F1007A8C5D = {
-						CreatedOnToolsVersion = 26.2;
-						TestTargetID = CE094A442F0C54F0007A8C5D;
-					};
 				};
 			};
 			buildConfigurationList = CE094A402F0C54F0007A8C5D /* Build configuration list for PBXProject "OptimumAssignment" */;
@@ -211,6 +165,7 @@
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
 				CE094ACA2F0D71E4007A8C5D /* XCRemoteSwiftPackageReference "Alamofire" */,
+				CE207D272F0E2F0A003543F6 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = CE094A462F0C54F0007A8C5D /* Products */;
@@ -219,7 +174,6 @@
 			targets = (
 				CE094A442F0C54F0007A8C5D /* OptimumAssignment */,
 				CE094A512F0C54F1007A8C5D /* OptimumAssignmentTests */,
-				CE094A5B2F0C54F1007A8C5D /* OptimumAssignmentUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -233,13 +187,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		CE094A502F0C54F1007A8C5D /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		CE094A5A2F0C54F1007A8C5D /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -263,13 +210,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		CE094A582F0C54F1007A8C5D /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -277,11 +217,6 @@
 			isa = PBXTargetDependency;
 			target = CE094A442F0C54F0007A8C5D /* OptimumAssignment */;
 			targetProxy = CE094A532F0C54F1007A8C5D /* PBXContainerItemProxy */;
-		};
-		CE094A5E2F0C54F1007A8C5D /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = CE094A442F0C54F0007A8C5D /* OptimumAssignment */;
-			targetProxy = CE094A5D2F0C54F1007A8C5D /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -515,46 +450,6 @@
 			};
 			name = Release;
 		};
-		CE094A6D2F0C54F1007A8C5D /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 6AW4S42492;
-				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.one47.OptimumAssignmentUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				STRING_CATALOG_GENERATE_SYMBOLS = NO;
-				SWIFT_APPROACHABLE_CONCURRENCY = YES;
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = OptimumAssignment;
-			};
-			name = Debug;
-		};
-		CE094A6E2F0C54F1007A8C5D /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 6AW4S42492;
-				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.one47.OptimumAssignmentUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				STRING_CATALOG_GENERATE_SYMBOLS = NO;
-				SWIFT_APPROACHABLE_CONCURRENCY = YES;
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = OptimumAssignment;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -585,15 +480,6 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		CE094A6C2F0C54F1007A8C5D /* Build configuration list for PBXNativeTarget "OptimumAssignmentUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				CE094A6D2F0C54F1007A8C5D /* Debug */,
-				CE094A6E2F0C54F1007A8C5D /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
@@ -605,6 +491,14 @@
 				minimumVersion = 5.11.0;
 			};
 		};
+		CE207D272F0E2F0A003543F6 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 8.6.2;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -612,6 +506,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = CE094ACA2F0D71E4007A8C5D /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = Alamofire;
+		};
+		CE207D282F0E2F0A003543F6 /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CE207D272F0E2F0A003543F6 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
