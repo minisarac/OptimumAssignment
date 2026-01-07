@@ -5,9 +5,9 @@
 //  Created by Deniz Sarac on 1/6/26.
 //
 
+import Combine
 import Foundation
 import SwiftUI
-import Combine
 
 enum AppearanceMode: String, CaseIterable {
     case light = "Light"
@@ -15,7 +15,7 @@ enum AppearanceMode: String, CaseIterable {
     case auto = "Auto"
 }
 
-enum ContentType: String, CaseIterable {
+enum ContentType: String, CaseIterable, Codable {
     case movies = "Movies"
     case tv = "TV Shows"
     case all = "All"
@@ -51,28 +51,28 @@ class AppSettings: ObservableObject {
     }
 
     private init() {
-        // Load appearance
         if let savedAppearance = UserDefaults.standard.string(forKey: "appearance"),
-           let mode = AppearanceMode(rawValue: savedAppearance) {
-            self.appearance = mode
+           let mode = AppearanceMode(rawValue: savedAppearance)
+        {
+            appearance = mode
         } else {
-            self.appearance = .auto
+            appearance = .auto
         }
 
-        // Load content type
         if let savedContentType = UserDefaults.standard.string(forKey: "contentType"),
-           let type = ContentType(rawValue: savedContentType) {
-            self.contentType = type
+           let type = ContentType(rawValue: savedContentType)
+        {
+            contentType = type
         } else {
-            self.contentType = .all
+            contentType = .all
         }
 
-        // Load sort option
         if let savedSortOption = UserDefaults.standard.string(forKey: "sortOption"),
-           let option = SortOption(rawValue: savedSortOption) {
-            self.sortOption = option
+           let option = SortOption(rawValue: savedSortOption)
+        {
+            sortOption = option
         } else {
-            self.sortOption = .popularity
+            sortOption = .popularity
         }
     }
 

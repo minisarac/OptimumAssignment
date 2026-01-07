@@ -8,7 +8,15 @@
 import Foundation
 
 enum TrendingPeriod: String, CaseIterable {
-  case today = "Today"
-  case thisWeek = "This Week"
+    case day
+    case week
 
+    var label: String {
+        switch self {
+        case .day:
+            "Today"
+        case .week:
+            "This Week"
+        }
+    }
 }

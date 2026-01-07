@@ -8,7 +8,7 @@
 import Alamofire
 import Foundation
 
-final class NetworkManager: @unchecked Sendable {
+final class NetworkManager {
     static let shared = NetworkManager()
 
     private let session: Session
@@ -28,7 +28,6 @@ final class NetworkManager: @unchecked Sendable {
         let configuration = URLSessionConfiguration.af.default
         configuration.urlCache = cache
 
-        // Auth at session level
         let interceptor = AuthInterceptor()
         session = Session(configuration: configuration, interceptor: interceptor)
     }

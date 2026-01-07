@@ -45,7 +45,7 @@ enum EndpointConfig {
               let config = NSDictionary(contentsOfFile: path),
               let key = config["TMDB_API_KEY"] as? String
         else {
-            fatalError("Config.plist not found or TMDB_API_KEY missing. Please copy Config.template.plist to Config.plist and add your API key.")
+            fatalError("Config.plist not found or TMDB_API_KEY missing.")
         }
         return key
     }()
