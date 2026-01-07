@@ -33,5 +33,5 @@ struct ListRowView: View {
 }
 
 #Preview {
-  ListRowView(movie: StubMovies.trendingThisWeek[1])
+//  ListRowView(movie: StubMovies.trendingThisWeek[1])
 }
